@@ -1,5 +1,6 @@
 'use strict';
 const $=s=>document.querySelector(s),canvas=$('#game'),ctx=canvas.getContext('2d');
+const QA=new URLSearchParams(location.search).has('qa');
 const LEVELS=[
  {name:'Dawn Watch',goal:'Hold the eastern gate',count:12,roster:['shade'],hazard:'none',sky:['#07172e','#35698b','#d98b55']},
  {name:'Broken Gate',goal:'Stop the swift breach runners',count:16,roster:['shade','runner'],hazard:'rubble',sky:['#101b35','#52637d','#ad6c4f']},
@@ -60,7 +61,7 @@ function draw(){backdrop();if(!fort)return;ctx.fillStyle=shield?'#7ee4ff55':'#15
  for(const s of shots){ctx.fillStyle='#f9d2ff';ctx.beginPath();ctx.arc(s.x,s.y,6,0,7);ctx.fill()}unit(hero,18,CLASSES[save.class].color,true);ctx.strokeStyle='#ffe179';ctx.lineWidth=5;ctx.beginPath();ctx.moveTo(hero.x+hero.dir*11,hero.y);ctx.lineTo(hero.x+hero.dir*34,hero.y-23);ctx.stroke();bar(hero,62,hero.y-33);
  for(const p of particles){ctx.globalAlpha=p.t/30;ctx.fillStyle=p.color;ctx.fillRect(p.x,p.y,4,4)}ctx.globalAlpha=1;let cfg=LEVELS[level];$('#mission').textContent=`LEVEL ${level+1}/10 · ${cfg.name} · ${cfg.goal}`;$('#stats').innerHTML=`❤️ ${Math.ceil(Math.max(0,hero.hp))}/${hero.max} · 🏰 ${Math.ceil(Math.max(0,fort.hp))}/${fort.max}<br>✨ ${light} · 🪽 ${guardians.length}/12 · 👿 ${enemies.length+remaining} · ${rally?'FOLLOW':'DEFEND'} · ✦ ${skillCD?Math.ceil(skillCD/60):'READY'}`}
 function loop(){update();draw();if(loopStarted)requestAnimationFrame(loop)}
-function renderMenu(){document.querySelectorAll('[data-class]').forEach(b=>b.classList.toggle('selected',b.dataset.class===save.class));let p=$('#levelPick');p.innerHTML='';LEVELS.forEach((l,i)=>{let b=document.createElement('button');b.textContent=i+1;b.title=l.name;b.className=(i>=save.unlocked?'locked ':'')+(i===selected?'selected':'');b.onclick=()=>{if(i<save.unlocked){selected=i;$('#story').innerHTML=`<b>Level ${i+1}: ${l.name}</b><br>${l.goal}.`;renderMenu()}};p.append(b)})}
+function renderMenu(){document.querySelectorAll('[data-class]').forEach(b=>b.classList.toggle('selected',b.dataset.class===save.class));let p=$('#levelPick');p.innerHTML='';LEVELS.forEach((l,i)=>{let b=document.createElement('button');b.textContent=i+1;b.title=l.name;b.className=(!QA&&i>=save.unlocked?'locked ':'')+(i===selected?'selected':'');b.onclick=()=>{if(QA||i<save.unlocked){selected=i;$('#story').innerHTML=`<b>Level ${i+1}: ${l.name}</b><br>${l.goal}.`;renderMenu()}};p.append(b)})}
 document.querySelectorAll('[data-class]').forEach(b=>b.onclick=()=>{save.class=b.dataset.class;persist();renderMenu();$('#story').innerHTML=`<b>${b.textContent.trim()}</b><br>${CLASSES[save.class].skill} is ready for battle.`});
 $('#primary').onclick=()=>mode==='pause'?($('#overlay').classList.remove('show'),mode='play'):begin(selected);
 $('#recruit').onclick=recruit;$('#wall').onclick=buildWall;$('#attack').onclick=attack;$('#skill').onclick=skill;
@@ -69,5 +70,5 @@ $('#pause').onclick=()=>{if(mode==='play'){mode='pause';$('#story').textContent=
 $('#sound').onclick=()=>{save.sound=!save.sound;persist();$('#sound').textContent=`SOUND: ${save.sound?'ON':'OFF'}`};
 $('#resetSave').onclick=()=>{if(confirm('Reset campaign progress?')){save={...BASE_SAVE};persist();selected=0;renderMenu()}};
 document.querySelectorAll('[data-move]').forEach(b=>{let v=b.dataset.move==='left'?-1:1;b.onpointerdown=e=>{e.preventDefault();moveTouch=v};b.onpointerup=b.onpointercancel=()=>moveTouch=0});
-addEventListener('keydown',e=>{keys[e.key.toLowerCase()]=true;if([' ','ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].includes(e.key))e.preventDefault();if(e.repeat)return;if(e.key===' ')attack();if(e.key.toLowerCase()==='q')recruit();if(e.key.toLowerCase()==='e')$('#rally').click();if(e.key.toLowerCase()==='f')buildWall();if(e.key.toLowerCase()==='r')skill()});
+addEventListener('keydown',e=>{keys[e.key.toLowerCase()]=true;if([' ','ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].includes(e.key))e.preventDefault();if(e.repeat)return;if(e.key===' ')attack();if(e.key.toLowerCase()==='q')recruit();if(e.key.toLowerCase()==='e')$('#rally').click();if(e.key.toLowerCase()==='f')buildWall();if(e.key.toLowerCase()==='r')skill();if(QA&&e.key.toLowerCase()==='n'){remaining=0;enemies=[];finish(true)}});
 addEventListener('keyup',e=>keys[e.key.toLowerCase()]=false);canvas.addEventListener('pointerdown',attack);$('#sound').textContent=`SOUND: ${save.sound?'ON':'OFF'}`;renderMenu();backdrop();
