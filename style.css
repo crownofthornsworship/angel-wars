@@ -19,17 +19,18 @@ button:active{transform:translateY(2px);filter:brightness(1.25)}
 #overlay{position:fixed;z-index:10;inset:0;display:none;overflow:auto;padding:24px;background:linear-gradient(#061225bb,#061225f2),url('angel-wars-share.png') center/cover}.show{display:grid!important;place-items:center}
 .panel{width:min(760px,100%);padding:clamp(18px,4vw,38px);text-align:center;background:#061329df;border:1px solid #f6d88777;border-radius:26px;box-shadow:0 20px 70px #000}.crest{font-size:42px;color:var(--gold)}.eyebrow{font-size:11px;letter-spacing:.25em;color:#bbd8f4}
 .panel h1{margin:0;font-family:Georgia,serif;font-size:clamp(40px,9vw,78px);line-height:.9;color:#ffe5a1;text-shadow:0 4px #492909}.panel h2{margin:10px;color:#c6ddf8;letter-spacing:.18em;font-size:clamp(14px,3vw,22px)}#story{max-width:610px;margin:16px auto;line-height:1.5;color:#d4e2f1}
-#classPick{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:16px 0}#classPick button{padding:12px 8px}#classPick button.selected{outline:3px solid var(--gold);background:#65460e}#classPick small{display:block;font-size:10px;font-weight:500;margin-top:5px;color:#cbd9e8}
+#classPick{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:16px 0}#classPick button{padding:8px;overflow:hidden}#classPick img{display:block;width:100%;height:128px;object-fit:contain;filter:drop-shadow(0 6px 8px #0008)}#classPick b{display:block;margin-top:3px}#classPick button.selected{outline:3px solid var(--gold);background:#65460e}#classPick small{display:block;font-size:10px;font-weight:500;margin-top:5px;color:#cbd9e8}
 #levelPick{display:flex;justify-content:center;flex-wrap:wrap;gap:6px;margin:12px}#levelPick button{width:38px;height:38px}#levelPick button.locked{opacity:.3}#levelPick button.selected{background:#9b6d12;border-color:#ffe39b}
 #primary{padding:15px 28px;background:linear-gradient(#c98c1a,#77500b);border-color:#ffe39b;font-size:17px}.menuRow{display:flex;justify-content:center;gap:8px;margin:10px}.menuRow button{font-size:10px;padding:8px}.note{color:#91a7bd;line-height:1.4}
 @media(max-width:680px){
  #stats{font-size:10px}#hud b{font-size:12px}
  .actions{display:grid;grid-template-columns:repeat(3,46px);gap:4px}.actions button{width:46px;height:46px}.actions button:nth-child(4){grid-column:2}.actions button:nth-child(5){grid-column:3}
  .dpad{grid-template-columns:repeat(3,43px);grid-template-rows:repeat(3,43px);gap:2px}.dpad button{width:43px;height:43px;border-radius:14px}.dpad span{border-radius:13px}
- #classPick{grid-template-columns:1fr}.panel{border-radius:18px}#overlay{padding:12px}
+ #classPick{grid-template-columns:repeat(3,1fr)}#classPick img{height:88px}#classPick b{font-size:11px}#classPick small{font-size:8px}.panel{border-radius:18px}#overlay{padding:12px}
 }
 @media(max-height:570px) and (orientation:landscape){
  #hud{min-height:48px}#controls{bottom:5px}.dpad{grid-template-columns:repeat(3,38px);grid-template-rows:repeat(3,38px)}.dpad button{width:38px;height:38px;border-radius:12px}.actions{display:flex}.actions button{width:46px;height:45px}#toast{top:62px}
+ #classPick img{height:72px}.panel{padding:12px}.panel h1{font-size:42px}#story{margin:8px auto}#classPick{margin:8px 0}
 }
 @media(max-width:420px) and (orientation:portrait){
  #controls{left:7px;right:7px;bottom:max(7px,env(safe-area-inset-bottom))}.actions{grid-template-columns:repeat(3,43px)}.actions button{width:43px;height:43px;font-size:17px}.dpad{grid-template-columns:repeat(3,41px);grid-template-rows:repeat(3,41px)}.dpad button{width:41px;height:41px;font-size:16px}
