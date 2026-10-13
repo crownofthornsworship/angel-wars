@@ -2,9 +2,9 @@
 const $=s=>document.querySelector(s),canvas=$('#game'),ctx=canvas.getContext('2d');
 const ART={battlefield:new Image(),enemy:new Image(),fort:new Image(),heroes:{vanguard:new Image(),warden:new Image(),seraph:new Image()},attacks:{vanguard:new Image(),warden:new Image(),seraph:new Image()}};
 ART.battlefield.src='assets/celestial-battlefield.webp';
-ART.heroes.vanguard.src='assets/angel-vanguard-v2.webp';
-ART.heroes.warden.src='assets/angel-warden-v2.webp';
-ART.heroes.seraph.src='assets/angel-seraph-v2.webp';
+ART.heroes.vanguard.src='assets/angel-vanguard-v2.webp?v=2';
+ART.heroes.warden.src='assets/angel-warden-v2.webp?v=2';
+ART.heroes.seraph.src='assets/angel-seraph-v2.webp?v=2';
 ART.attacks.vanguard.src='assets/angel-vanguard-attack.webp?v=1';
 ART.attacks.warden.src='assets/angel-warden-attack.webp?v=1';
 ART.attacks.seraph.src='assets/angel-seraph-attack.webp?v=1';
