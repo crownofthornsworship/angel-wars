@@ -8,6 +8,16 @@
 - Vanguard uses a broad sword sweep, Warden uses a shield bash with knockback and brief stun, and Seraph uses a ranged staff bolt.
 - Preserved keyboard, touch controls, ten-level campaign, saves, bosses, army commands, and fortress systems.
 
+## Completed in the deep class and boss update
+
+- Vanguard now has a three-hit melee combo, oversized finishing cleave, guardian inspiration, and a target-seeking Radiant Charge.
+- Warden now uses a timed shield impact with knockback, stun, recovery, fortified construction, and a healing Sanctuary Dome.
+- Seraph now aims staff bolts toward enemies, visibly casts while hovering, heals allies, and calls seven staggered star strikes.
+- Attack damage now lands at each class's visible impact frame instead of immediately on button press.
+- The Ash Captain telegraphs charging arena slams and changes speed while summoning phase-two reinforcements.
+- The Prince of Night uses radial void bolts, telegraphed rifts, and a more aggressive second phase.
+- Mobile movement releases safely on pointer loss, controls respect phone safe areas, and portrait/landscape HUD overlap is reduced.
+
 ## Phase 2 — full character animation sets
 
 - Give every class consistent idle, movement, attack anticipation, attack impact, recovery, hurt, skill, and victory frames.
